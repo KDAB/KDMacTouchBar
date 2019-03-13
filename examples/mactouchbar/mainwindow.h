@@ -18,6 +18,9 @@
 **
 **********************************************************************/
 
+#ifndef EX_MAINWINDOW_H
+#define EX_MAINWINDOW_H
+
 #include <QtWidgets/QMainWindow>
 
 class MainWindow : public QMainWindow
@@ -33,3 +36,4 @@ protected:
     void closeEvent(QCloseEvent *event) override;
 };
 
+#endif
