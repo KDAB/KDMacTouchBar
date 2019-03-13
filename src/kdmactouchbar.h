@@ -18,8 +18,8 @@
 **
 **********************************************************************/
 
-#ifndef QMACTOUCHBAR_H
-#define QMACTOUCHBAR_H
+#ifndef KDMACTOUCHBAR_H
+#define KDMACTOUCHBAR_H
 
 #include "kdmactouchbar_global.h"
 
