@@ -336,8 +336,8 @@ public:
 - (id)initWithKDMacTouchBar:(KDMacTouchBar *)bar
 {
     self = [super init];
-    items = [NSMutableDictionary dictionary];
-    commands = [NSMutableDictionary dictionary];
+    items = [[NSMutableDictionary alloc] init];
+    commands = [[NSMutableDictionary alloc] init];
     qMacTouchBar = bar;
     delegate = [[DynamicTouchBarProviderDelegate alloc] initWithItems:items];
     return self;
