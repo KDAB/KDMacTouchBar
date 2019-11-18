@@ -497,9 +497,11 @@ public:
 {
     NSString *identifier = identifierForAction(action).toNSString();
     NSPopoverTouchBarItem *item = [items objectForKey:identifier];
+    if (item == nil)
+        return;
     QObjectPointer *command = [commands objectForKey:[NSValue valueWithPointer:item.view]];
-    [items removeObjectForKey:identifier];
     [commands removeObjectForKey:[NSValue valueWithPointer:item.view]];
+    [items removeObjectForKey:identifier];
     [command release];
 
     [self makeTouchBar];
