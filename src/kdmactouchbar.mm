@@ -471,6 +471,18 @@ public:
         button.hidden = !action->isVisible();
         button.image = qt_mac_create_nsimage(action->icon());
         button.title = removeMnemonics(action->text()).toNSString();
+        switch (qMacTouchBar->touchButtonStyle())
+        {
+        case KDMacTouchBar::IconOnly:
+            button.imagePosition = NSImageOnly;
+            break;
+        case KDMacTouchBar::TextOnly:
+            button.imagePosition = NSNoImage;
+            break;
+        case KDMacTouchBar::TextBesideIcon:
+            button.imagePosition = NSImageLeft;
+            break;
+        }
         item.showsCloseButton = action->menu() != nullptr;
         if (action->menu()) {
             item.popoverTouchBar = [[NSTouchBar alloc] init];
@@ -644,6 +656,7 @@ public:
     DynamicTouchBarProvider *touchBarProvider = nil;
     QAction *principialAction = nullptr;
     QAction *escapeAction = nullptr;
+    KDMacTouchBar::TouchButtonStyle touchButtonStyle = TextBesideIcon;
 
     static bool automaticallyCreateMessageBoxTouchBar;
 };
@@ -689,6 +702,13 @@ public:
     touchBar->addSeparator();
     touchBar->addAction(actionSaveFile);
   \endcode
+*/
+
+/*!
+\enum KDMacTouchBar::TouchButtonStyle
+\value IconOnly Only display the icon.
+\value TextOnly Only display the text.
+\value TextBesideIcon The text appears beside the icon.
 */
 
 /*!
@@ -904,6 +924,34 @@ void KDMacTouchBar::setEscapeAction(QAction *action)
 QAction *KDMacTouchBar::escapeAction() const
 {
     return d->escapeAction;
+}
+
+/*!
+   \property KDMacTouchBar::touchButtonStyle
+   This property holds the style of touch bar buttons.
+
+   This property defines the style of all touch buttons that are added as QActions.
+   Added tab widgets, dialog button boxes, message boxes or QWidgetActions won't
+   follow this style.
+
+   The default is KDMacTouchBar::TextBesideIcon
+   */
+void KDMacTouchBar::setTouchButtonStyle(TouchButtonStyle touchButtonStyle)
+{
+    if (d->touchButtonStyle == touchButtonStyle)
+        return;
+
+    d->touchButtonStyle = touchButtonStyle;
+
+    for (auto* action : actions())
+        [d->touchBarProvider changeItem:action];
+    if (d->escapeAction)
+        [d->touchBarProvider changeItem:d->escapeAction];
+}
+
+KDMacTouchBar::TouchButtonStyle KDMacTouchBar::touchButtonStyle() const
+{
+    return d->touchButtonStyle;
 }
 
 /*!
