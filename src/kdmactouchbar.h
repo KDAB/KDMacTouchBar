@@ -61,6 +61,8 @@ public:
     void setEscapeAction(QAction *action);
     QAction *escapeAction() const;
 
+    void clear();
+
 protected:
     bool event(QEvent *event);
 

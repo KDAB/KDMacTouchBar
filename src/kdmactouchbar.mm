@@ -868,7 +868,7 @@ void KDMacTouchBar::removeDialogButtonBox(QDialogButtonBox *buttonBox)
 void KDMacTouchBar::setPrincipialAction(QAction *action)
 {
     d->principialAction = action;
-    d->touchBarProvider.touchBar.principalItemIdentifier = identifierForAction(action).toNSString();
+    d->touchBarProvider.touchBar.principalItemIdentifier = action ? identifierForAction(action).toNSString() : nil;
 }
 
 QAction *KDMacTouchBar::principialAction() const
@@ -904,6 +904,18 @@ void KDMacTouchBar::setEscapeAction(QAction *action)
 QAction *KDMacTouchBar::escapeAction() const
 {
     return d->escapeAction;
+}
+
+/*!
+   Removes all actions from the touch bar. Removes even the escapeAction.
+   The principialAction is cleared.
+*/
+void KDMacTouchBar::clear()
+{
+    setEscapeAction(nullptr);
+    setPrincipialAction(nullptr);
+    for (auto* action : actions())
+        removeAction(action);
 }
 
 QT_END_NAMESPACE
