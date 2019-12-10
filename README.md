@@ -25,20 +25,33 @@ touchBar->addSeparator();
 touchBar->addAction(actionSaveFile);
 ```
 
-## License:
+## Licensing:
 KD MacTouchBar is (C) 2019, Klarälvdalens Datakonsult AB, and is available under the terms of:
 
 * the LGPL (see LICENSE.LGPL.txt for details)
 * the KDAB commercial license, provided that you buy a license.
   please contact sales@kdab.com if you are interested in buying commercial licenses.
 
+## Get Involved:
+KDAB will happily accept external contributions; however, **all**
+contributions will require a signed Contributor License Agreement
+(see docs/KDMacTouchBar-CopyrightAssignmentForm.docx).
+
+Contact info@kdab.com for more information.
+
+Please submit your contributions or issue reports from our GitHub space at
+https://github.com/KDAB/KDMacTouchBar
+
 ## About KDAB
 KD MacTouchBar is supported and maintained by Klarälvdalens Datakonsult AB (KDAB).
 
-KDAB, the Qt experts, provide consulting and mentoring for developing
-Qt applications from scratch and in porting from all popular and legacy
-frameworks to Qt. We continue to help develop parts of Qt and are one
-of the major contributors to the Qt Project. We can give advanced or
-standard trainings anywhere around the globe.
+The KDAB Group is the global No.1 software consultancy for Qt, C++ and
+OpenGL applications across desktop, embedded and mobile platforms.
 
-Please visit http://www.kdab.com to meet the people who write code like this.
+The KDAB Group provides consulting and mentoring for developing Qt applications
+from scratch and in porting from all popular and legacy frameworks to Qt.
+We continue to help develop parts of Qt and are one of the major contributors
+to the Qt Project. We can give advanced or standard trainings anywhere
+around the globe on Qt as well as C++, OpenGL, 3D and more.
+
+Please visit https://www.kdab.com to meet the people who write code like this.
