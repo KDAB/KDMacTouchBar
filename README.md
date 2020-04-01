@@ -26,7 +26,8 @@ touchBar->addAction(actionSaveFile);
 ```
 
 ## Licensing:
-KD MacTouchBar is (C) 2019, Klarälvdalens Datakonsult AB, and is available under the terms of:
+KD MacTouchBar is (C) 2019-2020, Klarälvdalens Datakonsult AB,
+and is available under the terms of:
 
 * the LGPL (see LICENSE.LGPL.txt for details)
 * the KDAB commercial license, provided that you buy a license.
