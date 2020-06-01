@@ -37,7 +37,18 @@
 
 QT_BEGIN_NAMESPACE
 
+#if QT_VERSION < QT_VERSION_CHECK(5, 15, 0)
 NSImage *qt_mac_create_nsimage(const QIcon &icon, int defaultSize = 0);
+#else
+//  defined in gui/painting/qcoregraphics.mm
+@interface NSImage (QtExtras)
++ (instancetype)imageFromQIcon:(const QIcon &)icon
+@end
+NSImage *qt_mac_create_nsimage(const QIcon &icon)
+{
+    return [NSImage imageFromQIcon:icon];
+}
+#endif
 
 static QString identifierForAction(QObject *action)
 {
