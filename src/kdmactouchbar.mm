@@ -42,9 +42,9 @@ NSImage *qt_mac_create_nsimage(const QIcon &icon, int defaultSize = 0);
 #else
 //  defined in gui/painting/qcoregraphics.mm
 @interface NSImage (QtExtras)
-+ (instancetype)imageFromQIcon:(const QIcon &)icon
++ (instancetype)imageFromQIcon:(const QIcon &)icon;
 @end
-NSImage *qt_mac_create_nsimage(const QIcon &icon)
+static NSImage *qt_mac_create_nsimage(const QIcon &icon)
 {
     return [NSImage imageFromQIcon:icon];
 }
