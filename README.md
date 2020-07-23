@@ -31,7 +31,7 @@ and is available under the terms of:
 
 * the LGPL (see LICENSE.LGPL.txt for details)
 * the KDAB commercial license, provided that you buy a license.
-  please contact sales@kdab.com if you are interested in buying commercial licenses.
+  please contact info@kdab.com if you are interested in buying commercial licenses.
 
 ## Get Involved:
 KDAB will happily accept external contributions; however, **all**
