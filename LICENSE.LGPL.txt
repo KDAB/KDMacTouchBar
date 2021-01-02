@@ -1,5 +1,5 @@
 
- KDMacTouchBar is Copyright (C) 2019-2020 Klaralvdalens Datakonsult AB.
+ KDMacTouchBar is Copyright (C) 2019-2021 Klaralvdalens Datakonsult AB.
 
  You may use, distribute and copy KDMacTouchBar under the terms of
  GNU Lesser General Public License version 3, which is displayed below.
