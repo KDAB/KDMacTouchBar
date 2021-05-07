@@ -36,7 +36,7 @@ and is available under the terms of:
 ## Get Involved:
 KDAB will happily accept external contributions; however, **all**
 contributions will require a signed Contributor License Agreement
-(see docs/KDMacTouchBar-CopyrightAssignmentForm.docx).
+(see docs/KDMacTouchBar-CopyrightAssignmentForm.pdf).
 
 Contact info@kdab.com for more information.
 
