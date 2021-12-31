@@ -37,18 +37,33 @@
 
 QT_BEGIN_NAMESPACE
 
-#if QT_VERSION < QT_VERSION_CHECK(5, 15, 0)
-NSImage *qt_mac_create_nsimage(const QIcon &icon, int defaultSize = 0);
-#else
-//  defined in gui/painting/qcoregraphics.mm
-@interface NSImage (QtExtras)
-+ (instancetype)imageFromQIcon:(const QIcon &)icon;
-@end
-static NSImage *qt_mac_create_nsimage(const QIcon &icon)
+static NSImage *create_nsimage(const QIcon &icon)
 {
-    return [NSImage imageFromQIcon:icon];
+    const  auto sizes = icon.availableSizes();
+    if (icon.isNull() || sizes.isEmpty())
+        return nil;
+
+    auto nsImage = [[[NSImage alloc] initWithSize:NSZeroSize] autorelease];
+
+    for (const auto& size : qAsConst(sizes)) {
+        const QImage qimage = icon.pixmap(size).toImage();
+        CGImageRef cgImage = qimage.toCGImage();
+        if (!cgImage)
+            continue;
+
+        const auto deviceIndependentSize = qimage.size() / qimage.devicePixelRatio();
+        auto *imageRep = [[NSBitmapImageRep alloc] initWithCGImage:cgImage];
+        imageRep.size = deviceIndependentSize.toCGSize();
+        [nsImage addRepresentation:[imageRep autorelease]];
+    }
+
+    if (!nsImage.representations.count)
+        return nil;
+
+    [nsImage setTemplate:icon.isMask()];
+
+    return nsImage;
 }
-#endif
 
 static QString identifierForAction(QObject *action)
 {
@@ -480,7 +495,7 @@ public:
         button.highlighted = !button.bordered;
         button.state = action->isChecked();
         button.hidden = !action->isVisible();
-        button.image = qt_mac_create_nsimage(action->icon());
+        button.image = create_nsimage(action->icon());
         button.title = removeMnemonics(action->text()).toNSString();
         switch (qMacTouchBar->touchButtonStyle())
         {
