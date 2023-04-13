@@ -22,7 +22,11 @@
 
 #include <QtGui/QCloseEvent>
 
+#if QT_VERSION >= 0x060000
+#include <QtGui/QAction>
+#else
 #include <QtWidgets/QAction>
+#endif
 #include <QtWidgets/QMessageBox>
 #include <QtWidgets/QLabel>
 

@@ -35,6 +35,10 @@
 
 #import <AppKit/AppKit.h>
 
+#if QT_VERSION < 0x060000
+#define associatedObjects associatedWidgets
+#endif
+
 QT_BEGIN_NAMESPACE
 
 static NSImage *create_nsimage(const QIcon &icon)
@@ -75,7 +79,7 @@ static QString identifierForAction(QObject *action)
 
 static QString removeMnemonics(const QString &original)
 {
-    QString returnText(original.size(), 0);
+    QString returnText(original.size(), u'\0');
     int finalDest = 0;
     int currPos = 0;
     int l = original.length();
@@ -121,7 +125,7 @@ public:
     void sendDataChanged()
     {
         QActionEvent e(QEvent::ActionChanged, this);
-        for (auto w : associatedWidgets())
+        for (auto w : associatedObjects())
             QApplication::sendEvent(w, &e);
     }
 };
@@ -164,7 +168,7 @@ public:
     void sendDataChanged()
     {
         QActionEvent e(QEvent::ActionChanged, this);
-        for (auto w : associatedWidgets())
+        for (auto w : associatedObjects())
             QApplication::sendEvent(w, &e);
     }
 
@@ -209,6 +213,7 @@ public:
         setAttribute(Qt::WA_QuitOnClose, false);
         ensurePolished();
         setVisible(true);
+        widget->setVisible(true);
         QPixmap pm(1, 1);
         render(&pm, QPoint(), QRegion(),
                widget->autoFillBackground()
@@ -291,24 +296,24 @@ public:
     touchTarget = widget->childAt(point);
     if (touchTarget == nullptr)
         touchTarget = widget;
-    QMouseEvent e(QEvent::MouseButtonPress, touchTarget->mapFrom(widget, point), Qt::LeftButton,
-                  Qt::LeftButton, Qt::NoModifier);
+    QMouseEvent e(QEvent::MouseButtonPress, touchTarget->mapFrom(widget, point), point,
+		  Qt::LeftButton, Qt::LeftButton, Qt::NoModifier);
     qApp->sendEvent(touchTarget, &e);
 }
 - (void)touchesMovedWithEvent:(NSEvent *)event
 {
     NSTouch *touch = [[event touchesMatchingPhase:NSTouchPhaseMoved inView:self] anyObject];
     const QPoint point = QPointF::fromCGPoint([touch locationInView:self]).toPoint();
-    QMouseEvent e(QEvent::MouseButtonPress, touchTarget->mapFrom(widget, point), Qt::LeftButton,
-                  Qt::LeftButton, Qt::NoModifier);
+    QMouseEvent e(QEvent::MouseButtonPress, touchTarget->mapFrom(widget, point), point,
+		  Qt::LeftButton, Qt::LeftButton, Qt::NoModifier);
     qApp->sendEvent(touchTarget, &e);
 }
 - (void)touchesEndedWithEvent:(NSEvent *)event
 {
     NSTouch *touch = [[event touchesMatchingPhase:NSTouchPhaseEnded inView:self] anyObject];
     const QPoint point = QPointF::fromCGPoint([touch locationInView:self]).toPoint();
-    QMouseEvent e(QEvent::MouseButtonRelease, touchTarget->mapFrom(widget, point), Qt::LeftButton,
-                  Qt::LeftButton, Qt::NoModifier);
+    QMouseEvent e(QEvent::MouseButtonRelease, touchTarget->mapFrom(widget, point), point,
+                  Qt::LeftButton, Qt::LeftButton, Qt::NoModifier);
     qApp->sendEvent(touchTarget, &e);
 }
 
