@@ -1,0 +1,7 @@
+<RCC>
+    <qresource prefix="/">
+        <file alias="TouchBarButton.qml">qml/TouchBarButton.qml</file>
+        <file alias="TouchBarSlider.qml">qml/TouchBarSlider.qml</file>
+        <file alias="TouchBarFrame.qml">qml/TouchBarFrame.qml</file>
+    </qresource>
+</RCC>
