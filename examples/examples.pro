@@ -1,3 +1,4 @@
 TEMPLATE=subdirs
 
-SUBDIRS=mactouchbar
+CONFIG(widgets):SUBDIRS+=mactouchbar
+CONFIG(quick):SUBDIRS+=mactouchbar_quick

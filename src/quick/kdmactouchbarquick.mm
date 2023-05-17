@@ -225,6 +225,11 @@ TouchBar::~TouchBar()
   [tbp retain];
 }
 
+int TouchBar::registerQmlType()
+{
+  return qmlRegisterType<TouchBar>("TouchBar", 1, 0, "TouchBar");
+}
+
 bool TouchBar::isGlobal() const
 {
     return m_global;

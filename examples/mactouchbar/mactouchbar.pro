@@ -4,7 +4,7 @@ HEADERS += mainwindow.h
 SOURCES += mainwindow.cpp main.cpp
 RESOURCES += mactouchbar.qrc
 
-INCLUDEPATH = ../../src
+INCLUDEPATH = ../../src ../../src/widgets
 LIBS += -F../../lib -framework KDMacTouchBar
 QMAKE_LFLAGS = '-Wl,-rpath,\'$$OUT_PWD/../../lib\',-rpath,\'$$INSTALL_PREFIX/lib\''
 

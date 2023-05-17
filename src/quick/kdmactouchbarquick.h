@@ -35,6 +35,8 @@ public:
   explicit TouchBar(QQuickItem *parent = nullptr);
   ~TouchBar() override;
 
+  static int registerQmlType();
+
   bool isGlobal() const;
   void setGlobal(bool global);
 

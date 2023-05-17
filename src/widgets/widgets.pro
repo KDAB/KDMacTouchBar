@@ -12,7 +12,7 @@ DESTDIR = $${TOP_SOURCE_DIR}/lib
 
 SOURCES = kdmactouchbar.mm
 
-HEADERS = kdmactouchbar.h kdmactouchbar_global.h
+HEADERS = kdmactouchbar.h ../kdmactouchbar_global.h
 
 LIBS += -framework Cocoa
 QMAKE_LFLAGS_SONAME = -Wl,-install_name,@rpath/

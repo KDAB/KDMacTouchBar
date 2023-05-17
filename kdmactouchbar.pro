@@ -11,7 +11,7 @@ isEmpty( KDMACTOUCHBAR_INSTALL_PREFIX ): KDMACTOUCHBAR_INSTALL_PREFIX=$$DEFAULT_
 # if the default was either set by configure or set by the line above:
 equals( KDMACTOUCHBAR_INSTALL_PREFIX, $$DEFAULT_INSTALL_PREFIX ){
     INSTALL_PREFIX=$$DEFAULT_INSTALL_PREFIX
-    message( "No install prefix given, using default of" $$DEFAULT_INSTALL_PREFIX (use configure.sh -prefix DIR to specify))
+    message( "No install prefix given, using default of" $$DEFAULT_INSTALL_PREFIX)
 } else {
     INSTALL_PREFIX=$$KDMACTOUCHBAR_INSTALL_PREFIX
 }
