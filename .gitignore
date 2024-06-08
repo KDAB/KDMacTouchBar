@@ -5,3 +5,5 @@ lib
 .qmake.cache
 .qmake.stash
 .DS_Store
+CMakeLists.txt.user
+**/build/**
