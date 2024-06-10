@@ -1,5 +1,5 @@
 /****************************************************************************
-** Copyright (C) 2019 Klarälvdalens Datakonsult AB, a KDAB Group company, info@kdab.com.
+** Copyright (C) 2024 Klarälvdalens Datakonsult AB, a KDAB Group company, info@kdab.com.
 ** All rights reserved.
 **
 ** This file is part of the KD MacTouchBar library.
@@ -49,7 +49,7 @@ static NSImage *create_nsimage(const QIcon &icon)
 
     auto nsImage = [[[NSImage alloc] initWithSize:NSZeroSize] autorelease];
 
-    for (const auto& size : qAsConst(sizes)) {
+    for (const auto& size : sizes) {
         const QImage qimage = icon.pixmap(size).toImage();
         CGImageRef cgImage = qimage.toCGImage();
         if (!cgImage)

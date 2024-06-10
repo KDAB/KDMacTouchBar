@@ -1,5 +1,5 @@
 /****************************************************************************
-** Copyright (C) 2019 Klarälvdalens Datakonsult AB, a KDAB Group company, info@kdab.com.
+** Copyright (C) 2024 Klarälvdalens Datakonsult AB, a KDAB Group company, info@kdab.com.
 ** All rights reserved.
 **
 ** This file is part of the KD MacTouchBar library.
@@ -34,7 +34,7 @@
 
 MainWindow::MainWindow()
 {
-    setWindowTitle("KDMacTouchBar Example");
+    setWindowTitle(tr("KDMacTouchBar Example"));
     resize(400, 200);
 
     // attach a touchbar to this window
