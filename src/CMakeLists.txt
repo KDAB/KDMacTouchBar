@@ -9,9 +9,6 @@ add_library(KDMacTouchBar SHARED
             kdmactouchbar.mm
             ${HEADERS})
 
-install(TARGETS KDMacTouchBar
-        LIBRARY DESTINATION "${CMAKE_INSTALL_PREFIX}/lib")
-
 target_link_libraries(KDMacTouchBar ${QT_LIBRARIES} "-framework Cocoa")
 
 set_target_properties(KDMacTouchBar PROPERTIES
@@ -22,3 +19,6 @@ set_target_properties(KDMacTouchBar PROPERTIES
     LIBRARY_OUTPUT_DIRECTORY "${PROJECT_BINARY_DIR}/lib"
     MACOSX_RPATH TRUE
 )
+
+install(TARGETS KDMacTouchBar
+        LIBRARY FRAMEWORK DESTINATION "${CMAKE_INSTALL_PREFIX}/lib")

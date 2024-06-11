@@ -1,4 +1,4 @@
-# SPDX-FileCopyrightText: 2023 Klarälvdalens Datakonsult AB, a KDAB Group company <info@kdab.com>
+# SPDX-FileCopyrightText: 2024 Klarälvdalens Datakonsult AB, a KDAB Group company <info@kdab.com>
 #
 # SPDX-License-Identifier: MIT
 
@@ -13,14 +13,17 @@ jobs:
       fail-fast: true
       matrix:
         os:
-          - macos-12
-          - macos-11
+          - macos-latest
         build_type:
           - Debug
           - Release
         qt:
           - version: "5.15.2"
             requested: "5.15"
+            architectures: "x86_64"
+          - version: "6.4.*"
+            requested: "6.4"
+            architectures: "x86_64;arm64"
 
     steps:
       - name: Install Qt with options and default aqtversion
@@ -34,9 +37,6 @@ jobs:
       - name: Checkout sources
         uses: actions/checkout@v4
 
-      - name: Create build directory
-        run: mkdir build
-
       - name: Install ninja-build tool (must be after Qt due PATH changes)
         uses: turtlesec-no/get-ninja@main
 
@@ -44,6 +44,7 @@ jobs:
         run: >
           cmake -S . -B ./build -G Ninja
           -DCMAKE_BUILD_TYPE=${{ matrix.build_type }}
+          -DCMAKE_OSX_ARCHITECTURES="${{ matrix.qt.architectures }}"
 
       - name: Build Project
         run: cmake --build ./build
