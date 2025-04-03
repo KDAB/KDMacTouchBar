@@ -27,7 +27,7 @@ jobs:
 
     steps:
       - name: Install Qt with options and default aqtversion
-        uses: jurplel/install-qt-action@v3
+        uses: jurplel/install-qt-action@v4
         with:
           aqtversion: null # use whatever the default is
           modules: ${{ matrix.qt.modules }}
